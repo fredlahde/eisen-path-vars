@@ -1,4 +1,4 @@
-import { VApp, Renderer, Component, ComponentBuildFunc, VNode, Props } from '@kloudsoftware/eisen';
+import { VApp, Renderer, Component, ComponentBuildFunc, VNode, Props, RouterLink } from '@kloudsoftware/eisen';
 
 class Foo extends Component {
     build(app: VApp): ComponentBuildFunc {
@@ -6,6 +6,9 @@ class Foo extends Component {
             const id = props.getProp("_id");
 
             app.createElement("h1", id == undefined ? "UNDEF" : id, root);
+            const idx = Math.floor(Math.random() * Math.floor(100));
+            const link = new RouterLink(app, `/foo/${idx}`, [], `Navigate to /foo/${idx}`);
+            root.appendChild(link)
 
             return {
                 mounted: () => {
